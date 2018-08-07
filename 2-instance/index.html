@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue实例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      {{message}}
+    </div>
+    <script src="./demo.js"></script>
+    <script>
+      Vue.component('item', {
+        template: `<div></div>`,
+      })
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          message: 'dom'
+        },
+        components: {},
+        computed: {},
+        watch: {}
+      })
+      // Vue实例的属性和方法：一般$开头
+      // vm.$data, vm.$el, vm.$emit(), vm.$destroy()
+    </script>
+</body>
+</html>
