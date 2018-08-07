@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TODO</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <input type="text" placeholder="请输入todo" v-model="inputValue">
+      <button @click="submitTodo">提交</button>
+      <ul>
+        <todo-item v-for="(todo, index) in todos" 
+          :item="todo"
+          :index="index"
+          @delete="handleItemDelete"
+        ></todo-item>
+      </ul>
+    </div>
+    <script src="./todo.js"></script>
+</body>
+</html>
