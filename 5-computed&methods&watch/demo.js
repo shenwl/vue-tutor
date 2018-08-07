@@ -10,9 +10,16 @@ var vm = new Vue({
   // 内置缓存，依赖的数据不变就不会重新求值
   // 计算属性有getter(get)和setter(set)，不写默认为getter
   // computed: {
-  //   fullName() {
-  //     console.log('****执行了fullName****')
-  //     return this.firstName + " " + this.lastName
+  //   fullName: {
+  //     get() {
+  //       return this.firstName + " " + this.lastName
+  //     },
+  //     set(value) {
+  //       var strSplit = value.split(' ')
+  //       this.firstName = strSplit[0]
+  //       this.lastName = strSplit[1]
+  //       return this.firstName + " " + this.lastName
+  //     }
   //   },
   // },
   // methods: {
