@@ -38,6 +38,7 @@
 
   <script>
     // v-if, v-else-if, v-else的使用（要紧贴在一起）
+    // vue会尽量复用dom元素，不加key input切换时内容可能不会清空
     var vm2 = new Vue({
       el: '#app2',
       data: {
