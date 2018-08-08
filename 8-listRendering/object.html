@@ -34,13 +34,17 @@
       // 不能直接
       // vm.userInfo.city = 'BJ'
       // 可以直接改对象的引用
-      vm.userInfo = {
-        name: 'Allen',
-        age: 22,
-        gender: 'male',
-        address: 'China',
-        city: 'BJ',
-      }
+      // vm.userInfo = {
+      //   name: 'Allen',
+      //   age: 22,
+      //   gender: 'male',
+      //   address: 'China',
+      //   city: 'BJ',
+      // }
+
+      // 用Vue.set方法修改数据dom会响应, 也可以vm.$set调用set
+      vm.$set(vm.userInfo, 'city', 'Beijing')
+      console.log(vm.$set === Vue.set)  //true
     }, 1500)
   </script>
 </body>
