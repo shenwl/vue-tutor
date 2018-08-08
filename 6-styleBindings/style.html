@@ -10,7 +10,7 @@
 <body>
   <div id="app">
       <div 
-        :style="styleObject"
+        :style="[styleObject, styleObject2]"
         @click="handleClick"
       >Toggle Activated</div>
     </div>
@@ -23,10 +23,14 @@
           styleObject: {
             color: 'red',
           },
+          styleObject2: {
+            fontSize: '50px',
+          }
         },
         methods: {
           handleClick() {
             this.styleObject.color = (this.styleObject.color === 'black' ? 'red' : 'black')
+            this.styleObject2.fontSize = (this.styleObject2.fontSize === '50px' ? '30px' : '50px')
           },
         }
       })
