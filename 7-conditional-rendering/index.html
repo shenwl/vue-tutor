@@ -12,7 +12,6 @@
     <div v-if="show" class="if-div">{{message}}</div>
     <div v-show="show" class="show-div">{{message}}</div>
   </div>
-
   <script>
     // v-if：false时dom直接移除
     // v-show: 只是样式display的切换
@@ -27,7 +26,34 @@
 
     setTimeout(() => {
       vm.$data.show = false
-    }, 3000)
+    }, 2000)
+  </script>
+
+
+  <div id="app2">
+    <div v-if="show === 'a'">{{message1}}</div>
+    <div v-else-if="show === 'b'">{{message2}}</div>
+    <div v-else>{{message3}}</div>
+  </div>
+
+  <script>
+    // v-if, v-else-if, v-else的使用（要紧贴在一起）
+    var vm2 = new Vue({
+      el: '#app2',
+      data: {
+        message1: "message1",
+        message2: "message2",
+        message3: "message3",
+        show: 'a',
+      },
+    })
+
+    setTimeout(() => {
+      vm2.$data.show = 'b'
+    }, 4000)
+    setTimeout(() => {
+      vm2.$data.show = 'c'
+    }, 5500)
   </script>
 </body>
 </html>
