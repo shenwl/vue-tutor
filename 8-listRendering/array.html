@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>列表渲染</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+   <template v-for="(item, index) of list">
+      <!-- template模板占位符，不会渲染到页面上 -->
+      <div :key="item.id">
+        {{index}} - {{item.text}} - {{item.id}}
+      </div>
+      <span>{{item.text}}</span>
+   </template>
+  </div>
+  <script>
+    // 循环建议使用 of
+    // 注意key值唯一（一般使用id）
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        list: [
+          {
+            text: "Vue",
+            id: '00dsada1',
+          },
+          {
+            text: "Python",
+            id: '002dsada',
+          },
+          {
+            text: "Angular",
+            id: '0ddd01',
+          },
+          {
+            text: "React",
+            id: '00aazdsad1',
+          },
+          {
+            text: "JavaScript",
+            id: '0fafsafa01',
+          },
+        ]
+      }
+    })
+    setTimeout(() => {
+      // vm.list[5] = {text: "Docker", id: 'dasdsa112'}
+      // 通过下标的形式修改数组，并不会触发页面rerender
+      // 只能通过Vue提供的数组变异方法来操作数组(7个)：
+      // push, pop, shift, unshift, splice, sort, reverse
+      vm.list.push({text: "Docker", id: 'dasdsa112'})
+
+      // 或者改变数据的引用，也可以让页面响应数据变化
+      // vm.list = [
+      //     {
+      //       text: "Vue2",
+      //       id: '00dsada1',
+      //     },
+      //     {
+      //       text: "Python2",
+      //       id: '002dsada',
+      //     },
+      //     {
+      //       text: "Angular2",
+      //       id: '0ddd01',
+      //     },
+      //   ]
+    }, 2000)
+  </script>
+</body>
+</html>
