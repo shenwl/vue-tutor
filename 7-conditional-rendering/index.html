@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>条件渲染</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-if="show" class="if-div">{{message}}</div>
+    <div v-show="show" class="show-div">{{message}}</div>
+  </div>
+
+  <script>
+    // v-if：false时dom直接移除
+    // v-show: 只是样式display的切换
+    // 所以v-show性能相对较高
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        message: "I'm here",
+        show: true,
+      },
+    })
+
+    setTimeout(() => {
+      vm.$data.show = false
+    }, 3000)
+  </script>
+</body>
+</html>
