@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>列表渲染-对象</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-for="(value, key, index) of userInfo">{{index}} - {{key}} - {{value}}</div>
+  </div>
+
+  <script>
+    // 对象的循环渲染，(value, key, index)
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        userInfo: {
+          name: 'Allen',
+          age: 22,
+          gender: 'male',
+          address: 'China',
+        }
+      }
+    })
+
+    setTimeout(() => {
+      // 改变属性
+      // vm.userInfo.name = 'Mike'
+
+      // 增加属性
+      // 不能直接
+      // vm.userInfo.city = 'BJ'
+      // 可以直接改对象的引用
+      vm.userInfo = {
+        name: 'Allen',
+        age: 22,
+        gender: 'male',
+        address: 'China',
+        city: 'BJ',
+      }
+    }, 1500)
+  </script>
+</body>
+</html>
