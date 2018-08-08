@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue样式绑定</title>
+  <style>
+    .activated {
+      color: red;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <!-- <div id="app">
+    <div 
+      @click="handleClick"
+      :class="{activated: isActivated}"
+    >Toggle Activated</div>
+  </div>
+
+  <script>
+    // 方法1：
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        isActivated: false,
+      },
+      methods: {
+        handleClick() {
+          this.isActivated = !this.isActivated
+        },
+      }
+    })
+  </script> -->
+  <div id="app">
+      <div 
+        @click="handleClick"
+        :class="[activated]"
+      >Toggle Activated</div>
+    </div>
+  
+    <script>
+      // 方法2：class数组
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          activated: '',
+        },
+        methods: {
+          handleClick() {
+            this.activated = (this.activated === 'activated' ? '' : 'activated')
+          },
+        }
+      })
+    </script>
+</body>
+</html>
