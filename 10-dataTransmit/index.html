@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组件数据传递</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 用了v-bind，引号里就是js表达式，所以这里count的值为Number -->
+    <counter @changecount="handleCounterChange" :count="0"></counter>
+    <counter @changecount="handleCounterChange" :count="1"></counter>
+    <div>total: {{total}}</div>
+  </div>
+  <script>
+    // 父以属性形式给子传递数据，子要用props接收
+    // 注意单向数据流概念，子组件不要直接去改父组件传的数据
+    // 因为数据是引用类型的话，改变会影响到其它接收该数据的子组件
+    // 单向数据流的规定是隐性的，直接改数据也能改成功
+    var counter = {
+      props: ['count'],
+      data() {
+        return {
+          number: this.count,
+        }
+      },
+      template: `<div @click="handleClick">{{number}}</div>`,
+      methods: {
+        handleClick() {
+          this.number += 2
+          // 子组件触发事件可携带参数
+          this.$emit('changecount', 2)
+        },
+      },
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        total: 1,
+      },
+      components: {
+        counter,
+      },
+      methods: {
+        handleCounterChange(step) {
+          this.total += step
+        },
+      },
+    })
+  </script>
+</body>
+</html>
