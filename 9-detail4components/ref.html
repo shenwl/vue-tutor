@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用组件的细节点-ref</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div 
+      ref="clickDiv" 
+      @click="handleClick"
+    >click me</div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      methods: {
+        handleClick() {
+          // 通过ref获取dom结点 
+          // this.$refs存储了所有ref
+          // clickDiv是模板上ref属性起的名称
+          var refEl = this.$refs.clickDiv
+          console.log(refEl)
+        },
+      },
+    })
+  </script>
+</body>
+</html>
