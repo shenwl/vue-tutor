@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>使用组件的细节点</title>
+  <title>使用组件的细节点-is</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
@@ -20,9 +20,15 @@
   <script>
     // 三个row跑到了table外面的同一级
     // 因为HTML5规范规定tbody中必须放 tr，不能用row
-    // 使用 Vue 提供的 is 解决
+    // 使用 Vue 提供的 is 解决（类似问题li等也用 is）
     Vue.component('row', {
-      template: `<tr><td>this is a row</td></tr>`
+      // 子组件data用func，返回一个数据对象
+      data() {
+        return {
+          message: 'this is a row'
+        }
+      },
+      template: `<tr><td>{{message}}</td></tr>`
     })
     var vm = new Vue({
       el: '#app',
