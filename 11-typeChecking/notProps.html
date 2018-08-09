@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>非props特性</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child content="im content"></child>
+  </div>
+  <script>
+    // props属性在DOM上是不显示的
+
+    // 非props特性：
+    // 1. 子组件不用props接收，使用就会报错
+    // 2. 不用props接收这个属性就会显示在HTML上
+    Vue.component('child', {
+      template: `<div>{{content}}</div>`,
+    })
+    var vm = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+</html>
