@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>给组件绑定原生事件</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 这里其实是自定义事件‘click’ -->
+    <child @click="handleClick"></child>
+  </div>
+
+  <script>
+    // 注意什么是自定义事件，什么是绑定原生事件
+    Vue.component('child', {
+      // 这里绑定的才是原生click
+      template: `<div @click="handleChildCLick">child</div>`,
+      methods: {
+        handleChildCLick() {
+          this.$emit('click')
+        }
+      }
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      methods: {
+        handleClick() {
+          alert('click')
+        },
+      },
+    })
+  </script>
+</body>
+</html>
