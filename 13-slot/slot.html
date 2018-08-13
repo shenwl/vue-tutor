@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue中使用插槽</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 父组件向子组件插入DOM结构 -->
+    <child>
+      <div>use default slot</div>
+      <p slot="hello">Hello</p>
+    </child>
+  </div>
+
+  <script>
+    // slot标签,
+    // slot为承载分发内容的出口
+    // slot 可以设置默认内容
+    // slot 可以有name属性（具名插槽），要插入多个DOM结构时使用
+    Vue.component('child', {
+      props: ['content'],
+      template: `
+        <div>
+          <p>Child</p>
+          <slot name="hello">here should be hello</slot>
+          <slot>default slot</slot>
+        </div>`,
+    })
+    var vm = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+</html>
