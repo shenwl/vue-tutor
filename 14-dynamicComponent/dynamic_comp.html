@@ -14,11 +14,14 @@
   </div>
 
   <script>
+    // 没有v-once 每次toggle都销毁一个DOM元素，然后创建一个
+    // 有v-once就会放在内存里，不会重复创建child-one，child-two
+    // v-once能提高内容的展示效率
     Vue.component('child-one', {
-      template: `<div>child-one</div>`,
+      template: `<div v-once>child-one</div>`,
     })
     Vue.component('child-two', {
-      template: `<div>child-two</div>`,
+      template: `<div v-once>child-two</div>`,
     })
     var vm = new Vue({
       el: '#app',
