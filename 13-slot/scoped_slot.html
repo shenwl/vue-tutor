@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>作用域插槽</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child>
+      <template slot-scope="props">
+        <li>{{props.item}}</li>
+      </template>
+    </child>
+  </div>
+
+  <script>
+    // 父组件调用子组件时给子组件传了一个作用域插槽
+    // 必须包在template里，且必须声明接收的数据放在哪（slot-scope）
+    // template标签中是数据如何展示的dom结构
+
+    // 子组件作循环时，dom结构由外部传入
+    // 子组件给父组件传递数据
+    // 父组件用slot-scope的属性名字作为变量接收
+    Vue.component('child', {
+      data() {
+        return {
+          list: [1, 2, 3, 4]
+        }
+      },
+      template: `
+        <div>
+          <ul>
+            <slot
+              v-for="item of list"
+              :item=item
+            ></slot>
+          </ul>
+        </div>`,
+    })
+    var vm = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+</html>
