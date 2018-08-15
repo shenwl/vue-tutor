@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue中同时使用过度和动画</title>
+  <link rel="stylesheet" href="./animate.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 3s;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 加appear，让第一次内容显示也有动画 -->
+    <!-- 设置type="transition"，让动画时长以transition动画时长为准（transition时长有时和animate.css的动画时长不一致） -->
+    <!-- 或者用 :duration="1000" 自定义动画时长, duration也可以是对象，进行更复杂的设置 -->
+    <transition 
+      :duration="{enter: 4000, leave: 8000}"
+      name="fade" 
+      appear
+      enter-active-class="animated jello fade-enter-active" 
+      leave-active-class="animated fadeOutUp fade-leave-active"
+      appear-active-class="animated jello"
+    >
+      <div v-show="show">HelloWorld</div>
+    </transition>
+    <button @click="handleClick">切换</button>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        show: true,
+      },
+      methods: {
+        handleClick() {
+          this.show = !this.show
+        },
+      },
+    })
+  </script>
+</body>
+</html>
