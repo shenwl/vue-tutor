@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>在Vue中使用keyframes动画</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    .bounce-enter-active {
+      transform-origin: left center;
+      animation: bounce-in 1s;
+    } 
+    .bounce-leave-active {
+      transform-origin: left center;
+      /* 反向执行动画 */
+      animation: bounce-in 1s reverse;
+    } 
+  </style>
+</head>
+<body>
+  <div id="app">
+    <transition name="bounce">
+      <!-- 这里可以用v-if, v-show, 或者动态组件 -->
+      <div v-show="show">HelloWorld</div>
+    </transition>
+    <button @click="handleClick">切换</button>
+  </div>
+
+  <script>
+    // 可以自定义class名字
+    // 比如在transition标签上设置：
+    // <transition name="bounce" enter-active-class="active" leave-active-class="leave">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        show: true,
+      },
+      methods: {
+        handleClick() {
+          this.show = !this.show
+        },
+      },
+    })
+  </script>
+</body>
+</html>
